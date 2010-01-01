@@ -3,7 +3,7 @@ binary_find :: Ord a => [a] -> a -> Maybe Int
 binary_find [] elem   = Nothing
 
 binary_find list elem = 
-  do_search list elem 0 (length list) 
+  do_search list elem 0 (length list - 1) 
   where
     do_search list elem low high = 
       if high < low then Nothing
