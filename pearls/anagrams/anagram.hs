@@ -10,7 +10,8 @@ anagrams words =
     sorted_anagrams      = sortBy (flip $ comparing length) get_anagrams
     get_anagrams         = Map.elems $ foldl' insert_word Map.empty words
     insert_word map word = Map.insertWith' (++) sorted_word [word] map
-    sorted_word word     = BS.pack . sort . BS.unpack $ word
+      where
+        sorted_word = BS.pack $ sort $ BS.unpack $ word
 
 main = do
   input <- BS.getContents
