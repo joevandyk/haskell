@@ -1,0 +1,3 @@
+ruby anagram.rb < /usr/share/dict/words
+
+runhaskell anagram.hs < /usr/share/dict/words
