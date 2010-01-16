@@ -2,10 +2,10 @@
 binary_find list elem = 
   do_search list elem 0 (length list - 1) 
   where
-    do_search list elem low high
+    do_search low high
       | high    < low   = Nothing
-      | mid_val > elem  = do_search list elem low     (mid-1)
-      | mid_val < elem  = do_search list elem (mid+1) high
+      | mid_val > elem  = do_search low     (mid-1)
+      | mid_val < elem  = do_search (mid+1) high
       | otherwise       = Just mid
       where
         mid     = low + (high - low) `div` 2
