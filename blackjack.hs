@@ -2,6 +2,10 @@
 
 import Data.Ord (comparing)
 import Test.QuickCheck.All
+import Control.Monad
+import Test.QuickCheck
+import Test.QuickCheck.Gen
+import System.Random
 
 data Suit = Hearts | Spades | Clubs | Diamonds
   deriving (Show, Eq, Enum, Bounded)
@@ -37,6 +41,7 @@ scoreHand hand = sum $ map (score) hand
 bustedHand :: Hand -> Bool
 bustedHand hand = scoreHand hand > 21
 
+-- Not right, I know?
 blackJack :: Hand -> Bool
 blackJack hand = scoreHand hand == 21
 
@@ -62,3 +67,14 @@ prop_scoreHand3 = scoreHand [Card King Hearts] == 10
 prop_scoreHand4 = scoreHand [Card Jack Clubs] == 10
 prop_scoreHand5 = scoreHand [Card Queen Clubs, Card Three Hearts] == 13
 prop_blackjack = blackJack [Card Jack Clubs, Card Ace Hearts] == True
+
+{-
+-- Trying to figure out how to generate random cards for a hand
+instance Arbitrary Card where
+  arbitrary = do 
+    number <- choose [minBound..maxBound]::Rank
+    rank <- (toEnum number)::Rank
+    return $ Card rank Hearts
+
+prop_busted_not_blackjack hand = blackJack hand /= bustedHand hand
+-}
