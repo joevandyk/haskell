@@ -1,4 +1,4 @@
-module Not1 where
+module Code where
 
 myNot True  = False
 myNot False = True
@@ -24,7 +24,7 @@ minThree' a b c = min' a $ min' b c
 
 
 -- 3.16
-offset = fromEnum 'A' - fromEnum 'a'
+offset = fromEnum 'Z' - fromEnum 'z'
 toUpper ch = toEnum (fromEnum ch + offset)
 isLowerChar ch = fromEnum ch >= fromEnum 'a' && fromEnum ch <= fromEnum 'z'
 
